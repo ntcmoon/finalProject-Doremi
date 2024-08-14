@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(255, 229, 122);
+    color: rgb(216,85,152);
+}
+
+div#root{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
