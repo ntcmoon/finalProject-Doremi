@@ -27,32 +27,25 @@ const RegisterSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
-
 function Register() {
   const [values, setValues] = useState({
-    firstname: '',
-    lastname:'',
-    username: '',
-    password: '',
-    confirmpassword: ''
+    firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    confirmpassword: "",
   });
 
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post('https://crudcrud.com/api/1a733604522147088533cfb9016f1917', values)
-      .then(res => {console.log(res);
-        navigate('/')
-      })
-      .catch(error => console.log(error))
-  };
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //   };
 
   return (
     <>
       <div className="bg-yellow-300 w-full h-screen flex justify-center text-pink-400">
-        <div >
+        <div>
           <div className="form bg-white mt-[100px] w-[500px]  p-[20px] drop-shadow-xl rounded">
             <h2 className="mt-5 text-3xl font-bold text-center">
               Register New User
@@ -66,7 +59,28 @@ function Register() {
                 password: "",
                 confirmpassword: "",
               }}
-              onSubmit={handleSubmit}
+              onSubmit={(value, action) => {
+                console.log("value:: ", value, "\naction:: ", action);
+				// get all users
+				// check if username exists
+				// if yes return
+				// if no do create new user
+                axios
+                  .post(
+                    "https://crudcrud.com/api/7be6655d234a407680330b11f7586611/users",
+                    {
+                      firstname: value.firstname,
+                      lastname: value.lastname,
+                      username: value.username,
+                      password: value.password,
+                    }
+                  )
+                  .then((res) => {
+                    console.log(res);
+                    // navigate('/')
+                  })
+                  .catch((error) => console.log(error));
+              }}
             >
               {({ isSubmitting, handleChange, values }) => {
                 return (
@@ -177,7 +191,7 @@ function Register() {
                         type="submit"
                         className="btn btn-primary shadow-xl py-2 px-8 bg-pink-300 hover:bg-pink-400 text-white mx-8 rounded"
                         disabled={isSubmitting}
-                        onClick={handleSubmit}
+                        // onClick={handleSubmit}
                       >
                         Submit
                       </button>
