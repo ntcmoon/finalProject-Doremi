@@ -18,7 +18,6 @@ function Login() {
   };
 
   const onLinkClick = () => {
-    console.log('Link clicked!');
   };
   return (
     < >
