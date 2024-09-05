@@ -1,0 +1,32 @@
+[
+    {
+        "id":1,
+        "img":"Doremi-profile.jpg",
+        "name":"Harukaze Doremi"
+    },
+    {
+        "id":2,
+        "img":"Doremi-profile.jpg",
+        "name":"Fujiwara Hazuki"
+    },
+    {
+        "id":3,
+        "img":"Doremi-profile.jpg",
+        "name":"Senoo Aiko"
+    },
+    {
+        "id":4,
+        "img":"Doremi-profile.jpg",
+        "name":"Segawa Onpu"
+    },
+    {
+        "id":5,
+        "img":"Doremi-profile.jpg",
+        "name":"Harukaze Poppu"
+    },
+    {
+        "id":6,
+        "img":"Doremi-profile.jpg",
+        "name":"Asuka Momoko"
+    }
+]
