@@ -17,16 +17,17 @@ function Login() {
     setValues((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post("https://crudcrud.com/api/1a733604522147088533cfb9016f1917/users", values)
-      .then((res) => {
-        console.log(res);
-        // navigate("/");
-      })
-      .catch((error) => console.log(error));
-  };
+    const users = await axios .get("https://crudcrud.com/api/a6080486fa9b4702a546ee0c3130ef24/users")
+    const targetUser = users.data.find(user => user.username === values.username)
+    if (!targetUser || targetUser.password !== values.password) {
+      alert("Invalid username 0r password");
+      return;
+    } else {
+      navigate("/matching")
+    }
+    }
 
   return (
     <>
@@ -38,6 +39,7 @@ function Login() {
               Username :
               <input
                 type="text"
+                required
                 name="username"
                 value={values.username}
                 onChange={handleChange}
@@ -49,6 +51,7 @@ function Login() {
               Password :
               <input
                 type="password"
+                required
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -75,6 +78,7 @@ function Login() {
       </div>
     </>
   );
-}
+};
+
 
 export default Login;

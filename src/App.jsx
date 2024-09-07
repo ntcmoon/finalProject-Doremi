@@ -5,17 +5,22 @@ import "./App.css";
 import Root from "./component/Root";
 import Charname from "./component/Charname";
 import Matching from "./component/Matching";
-import Random from "./component/Random";
 import Profile from "./component/Profile";
 import Login from "./component/login";
 import Register from "./component/register";
 
 
-
-
-
 function App() {
   const router = createBrowserRouter([
+    
+    {
+      path: "/login",
+      element:<Login/>
+    },
+    {
+      path: "/register",
+      element:<Register />
+    },
     {
       path: "/",
       element: <Root />,
@@ -29,22 +34,11 @@ function App() {
           element: <Matching />,
         },
         {
-          path: "/random",
-          element: <Random />,
-        },
-        {
           path: "/profile",
           element: <Profile />,
-        }
+        },
+        
       ],
-    },
-    {
-      path: "/login",
-      element:<Login />
-    },
-    {
-      path: "/register",
-      element:<Register />
     }
   ]);
 
@@ -55,9 +49,6 @@ function App() {
 
     
   )
-
-
-
   return (
     <>
       
