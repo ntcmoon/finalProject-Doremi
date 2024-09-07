@@ -27,6 +27,8 @@ function Login() {
       alert("Invalid username or password");
       return;
     } else {
+      alert(`Welcome ${targetUser.username}`);
+      localStorage.setItem("user", JSON.stringify(targetUser));
       navigate("/matching");
     }
   };
@@ -78,7 +80,6 @@ function Login() {
       </div>
     </>
   );
-};
-
+}
 
 export default Login;

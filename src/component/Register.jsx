@@ -13,11 +13,7 @@ const RegisterSchema = Yup.object({
   lastname: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
-  username: Yup.string()
-    .min(4, "Mininum 4 characters")
-    .required("Required")
-    .test('username','Username is already taken', async (value) => {
-      return await isUsernameAvailable(value);}),
+  username: Yup.string().min(4, "Mininum 4 characters").required("Required"),
   password: Yup.string()
     .required("Required")
     .matches(
@@ -30,16 +26,7 @@ const RegisterSchema = Yup.object({
 });
 
 function Register() {
-  // const [values, setValues] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   username: "",
-  //   password: "",
-  //   confirmpassword: "",
-  // });
-
   const navigate = useNavigate();
-
 
   return (
     <>
@@ -58,8 +45,20 @@ function Register() {
                 password: "",
                 confirmpassword: "",
               }}
-              onSubmit={async(value, action) => {
-                console.log("value::", value, "\naction::", action);
+              onSubmit={async (value, actions) => {
+                const users = await axios.get(
+                  import.meta.env.VITE_URL + "/users"
+                );
+                if (
+                  users.data.filter((user) => user.username === value.username)
+                    .length >= 1
+                ) {
+                  alert(
+                    "This username already taken. Please use another username"
+                  );
+                  actions.resetForm();
+                  return;
+                }
                 axios
                   .post(import.meta.env.VITE_URL + "/users", {
                     firstname: value.firstname,
@@ -67,11 +66,14 @@ function Register() {
                     username: value.username,
                     password: value.password,
                   })
-                  .then((res) => {
-                    console.log(res);
-                    // navigate('/')
+                  .then(() => {
+                    alert("register successfully!");
+                    navigate("/login");
                   })
-                  .catch((error) => (console.log(error)));
+                  .catch(() => {
+                    alert("Please try again. Something went wrong");
+                    actions.resetForm();
+                  });
               }}
             >
               {({ isSubmitting, handleChange, values }) => {

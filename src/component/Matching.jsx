@@ -31,7 +31,7 @@ function Matching() {
       setPickcard([pickcard[0], card]);
     }
   };
-  console.log(pickcard, pickedCards);
+  
   useEffect(() => {
     if (pickcard.every((val) => val !== "")) {
       if (pickcard[0].url === pickcard[1].url) {
