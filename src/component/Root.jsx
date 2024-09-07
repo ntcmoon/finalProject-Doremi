@@ -28,7 +28,7 @@ function Root() {
         <div className={`md:flex md:justify-between md:w-2/3 z-[-1] md-z-auto md:static absolute bg-yellow-400 w-full left-0  md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ${
             isOpen ? 'top-[80px] opacity-100' : 'top-[-400px] opacity-0'}`}>
           <ul
-            className="md:flex md:items-center text-2xl font-bold text-rose-700 my-6  "
+            className="md:flex md:items-center text-2xl font-bold text-rose-700  "
             id="navbar-hamburger"
           >
             <li className="my-6">

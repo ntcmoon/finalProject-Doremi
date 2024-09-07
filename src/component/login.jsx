@@ -28,7 +28,6 @@ function Login() {
       .catch((error) => console.log(error));
   };
 
-  const onLinkClick = () => {};
   return (
     <>
       <div className="bg-pink-400 w-full h-screen flex justify-center text-yellow-400 ">
