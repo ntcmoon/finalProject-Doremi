@@ -17,15 +17,18 @@ function Login() {
     setValues((values) => ({ ...values, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .post("https://crudcrud.com/api/1a733604522147088533cfb9016f1917/users", values)
-      .then((res) => {
-        console.log(res);
-        // navigate("/");
-      })
-      .catch((error) => console.log(error));
+    const users = await axios.get(import.meta.env.VITE_URL + "/users");
+    const targetUser = users.data.find(
+      (user) => user.username === values.username
+    );
+    if (!targetUser || targetUser.password !== values.password) {
+      alert("Invalid username or password");
+      return;
+    } else {
+      navigate("/matching");
+    }
   };
 
   return (
@@ -38,6 +41,7 @@ function Login() {
               Username :
               <input
                 type="text"
+                required
                 name="username"
                 value={values.username}
                 onChange={handleChange}
@@ -49,6 +53,7 @@ function Login() {
               Password :
               <input
                 type="password"
+                required
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -60,14 +65,12 @@ function Login() {
                 type="register"
                 className="btn btn-primary text-xl shadow-xl py-2 px-8 mt-8  bg-pink-300 hover:bg-pink-400 text-white mx-8 rounded"
                 to="/Register"
-
               >
                 Register
               </Link>
               <input
                 type="submit"
                 className="text-xl mx-6  shadow-xl py-2 px-8 mt-8   bg-yellow-300 hover:bg-yellow-400 text-white rounded"
-
               />
             </div>
           </form>
@@ -75,6 +78,7 @@ function Login() {
       </div>
     </>
   );
-}
+};
+
 
 export default Login;

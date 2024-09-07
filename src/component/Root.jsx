@@ -47,14 +47,6 @@ function Root() {
                 เกมส์จับคู่
               </a>
             </li>
-            <li className="my-6">
-              <a
-                href={`/Random`}
-                className="hover:text-neutral-50 duration-500 mx-6 my-6 md:my-0"
-              >
-                เกมส์สุ่ม
-              </a>
-            </li>
           </ul>
           <ul className="md:flex mr-8 text-2xl font-bold text-rose-700 md:items-center mx-6 my-6 md:my-0">
             <li className="mr-8 my-6">

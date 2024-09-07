@@ -80,8 +80,7 @@ function Matching() {
               >
                 <img
                   src={
-                    pickcard.map((c) => c.id).includes(d.id) ||
-                    pickedCards.includes(d.id)
+                    pickcard.map((c) => c.id).includes(d.id) || pickedCards.includes(d.id)
                       ? d.url
                       : d.img
                   }

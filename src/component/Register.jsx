@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,24}$/;
 
 const RegisterSchema = Yup.object({
@@ -15,7 +13,11 @@ const RegisterSchema = Yup.object({
   lastname: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
-  username: Yup.string().min(4, "Mininum 4 characters").required("Required"),
+  username: Yup.string()
+    .min(4, "Mininum 4 characters")
+    .required("Required")
+    .test('username','Username is already taken', async (value) => {
+      return await isUsernameAvailable(value);}),
   password: Yup.string()
     .required("Required")
     .matches(
@@ -28,29 +30,16 @@ const RegisterSchema = Yup.object({
 });
 
 function Register() {
-  const [values, setValues] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    password: "",
-    confirmpassword: "",
-  });
+  // const [values, setValues] = useState({
+  //   firstname: "",
+  //   lastname: "",
+  //   username: "",
+  //   password: "",
+  //   confirmpassword: "",
+  // });
 
   const navigate = useNavigate();
 
-  // const handleSubmit = () => {
-  //   event.preventDefault();
-  //   axios
-  //     .post(
-  //       "https://crudcrud.com/api/1a733604522147088533cfb9016f1917/users",
-  //       values
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //       // navigate('/')
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
 
   return (
     <>
@@ -69,23 +58,20 @@ function Register() {
                 password: "",
                 confirmpassword: "",
               }}
-              onSubmit={(value, action) => {
+              onSubmit={async(value, action) => {
                 console.log("value::", value, "\naction::", action);
                 axios
-                  .post(
-                    "https://crudcrud.com/api/4a9972b401924e10897e47536dae0be7/users",
-                    {
-                      firstname: value.firstname,
-                      lastname:value.lastname,
-                      username: value.username,
-                      password: value.password,
-                    }
-                  )
+                  .post(import.meta.env.VITE_URL + "/users", {
+                    firstname: value.firstname,
+                    lastname: value.lastname,
+                    username: value.username,
+                    password: value.password,
+                  })
                   .then((res) => {
                     console.log(res);
                     // navigate('/')
                   })
-                  .catch((error) => console.log(error));
+                  .catch((error) => (console.log(error)));
               }}
             >
               {({ isSubmitting, handleChange, values }) => {
@@ -197,7 +183,6 @@ function Register() {
                         type="submit"
                         className="btn btn-primary shadow-xl py-2 px-8 bg-pink-300 hover:bg-pink-400 text-white mx-8 rounded"
                         disabled={isSubmitting}
-                        
                       >
                         Submit
                       </button>
