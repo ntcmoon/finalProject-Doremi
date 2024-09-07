@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Profile() {
@@ -12,7 +12,8 @@ function Profile() {
 
   const logOut = () => {
     localStorage.removeItem("user");
-    navigate("/login");
+    window.history.replaceState({}, "");
+    navigate("/login", { replace: true });
   };
 
   return (

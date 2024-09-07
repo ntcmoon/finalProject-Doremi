@@ -14,60 +14,62 @@ import Login from "./component/login";
 import Register from "./component/register";
 import Error from "./component/Error";
 
+const isAuthenticated = () => !!localStorage.getItem("user");
+
+// PrivateRoute: Redirect to login if not authenticated
+const PrivateRoute = () => {
+  return isAuthenticated() ? <Outlet /> : <Navigate to={"/login"} />;
+};
+
+// PublicRoute: Redirect to dashboard if authenticated
+const PublicRoute = () => {
+  return isAuthenticated() ? <Navigate to="/" /> : <Outlet />;
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PublicRoute />, // Public route for non-authenticated users
+    //   errorElement: <Error />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <PrivateRoute />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Root />,
+        children: [
+          {
+            path: "/charname",
+            element: <Charname />,
+          },
+          {
+            path: "/matching",
+            element: <Matching />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+        ],
+      },
+    ],
+  },
+]);
+
 function App() {
-  const isAuthenticated = () => !!localStorage.getItem("user");
-
-  // PrivateRoute: Redirect to login if not authenticated
-  const PrivateRoute = () => {
-    return isAuthenticated() ? <Outlet /> : <Login />;
-  };
-
-  // PublicRoute: Redirect to dashboard if authenticated
-  const PublicRoute = () => {
-    return isAuthenticated() ? <Root /> : <Outlet />;
-  };
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <PrivateRoute />, // Public route for non-authenticated users
-      errorElement: <Error />,
-      children: [
-        {
-          path: "/login",
-          element: <Login />,
-        },
-        {
-          path: "/register",
-          element: <Register />,
-        },
-      ],
-    },
-    {
-      path: "/",
-      element: <PublicRoute />,
-      errorElement: <Error />,
-      children: [
-        {
-          path: "/",
-          element: <Root />,
-        },
-        {
-          path: "/charname",
-          element: <Charname />,
-        },
-        {
-          path: "/matching",
-          element: <Matching />,
-        },
-        {
-          path: "/profile",
-          element: <Profile />,
-        },
-      ],
-    },
-  ]);
-
   return <RouterProvider router={router} />;
 }
 
