@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import data from "./card.json";
+import data from "../card.json";
 import { useState } from "react";
 
 
@@ -8,6 +8,7 @@ function Matching() {
   const [score, setScore] = useState(0);
   const [pickedCards, setPickedCards] = useState([]);
   const [win, setWin] = useState(false);
+  console.log('data', data)
 
   /*1.มีไพ่อยู่ 10 ใบ 2.สับไพ่ที่ตำแหน่งแรกไปใส่ในตำแหน่งที่ random ได้ 3.สับไพ่ที่ตำแหน่งแรกไปสุ่มใส่ในตำแหน่งที่ random ได้ ทำวนจนครบ 10 ครั้ง */
   const shuffleCards = useMemo(() => {
