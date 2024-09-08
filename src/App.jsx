@@ -11,7 +11,7 @@ import Charname from "./component/Charname";
 import Matching from "./component/Matching";
 import Profile from "./component/Profile";
 import Login from "./component/login";
-import Register from "./component/register";
+import Register from "./component/register.jsx";
 import Error from "./component/Error";
 
 const isAuthenticated = () => !!localStorage.getItem("user");

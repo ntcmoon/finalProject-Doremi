@@ -1,5 +1,5 @@
 import React from 'react'
-import data from './Charname.json'
+import data from './charnameed.json'
 
 function Charname() {
   return (
