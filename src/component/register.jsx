@@ -74,11 +74,11 @@ function Register() {
                   )
                   .then((res) => {
                     alert("register successfully!")
-                    navigate("/login")
+                    navigate("/")
                   })
                   .catch((error) => {
                     alert("Please try again. Something went wrong")
-                    actions("/login");
+                    actions("/");
                   });
               }}
             >
@@ -183,7 +183,7 @@ function Register() {
                       <Link
                         type="login"
                         className="btn btn-primary shadow-xl py-2 px-8 bg-pink-300 hover:bg-pink-400 text-white mx-8 rounded"
-                        to="/Login"
+                        to="/"
                       >
                         Login
                       </Link>

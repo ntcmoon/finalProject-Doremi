@@ -17,7 +17,7 @@ function Profile() {
   const logOut = () => {
     localStorage.removeItem("user")
     window.history.replaceState({}, "");
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
 
   return (
