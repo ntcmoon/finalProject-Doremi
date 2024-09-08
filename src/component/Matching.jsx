@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import data from "./card.json";
 import { useState } from "react";
 
+
 function Matching() {
   const [pickcard, setPickcard] = useState(["", ""]);
   const [score, setScore] = useState(0);
@@ -109,6 +110,7 @@ function Matching() {
             >
               Replay
             </button>
+            
           )}
         </div>
       </div>

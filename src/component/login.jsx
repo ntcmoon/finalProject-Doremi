@@ -25,7 +25,7 @@ function Login() {
       alert("Invalid username 0r password");
       return;
     } else {
-      alert(`Welcome $`)
+      alert(`Welcome ${targetUser.username}`)
       localStorage.setItem("user",JSON.stringify(targetUser));
       navigate("/matching")
     }

@@ -33,7 +33,7 @@ function Root() {
           >
             <li className="my-6">
               <a
-                href={"/Charname"}
+                href={"/charname"}
                 className="hover:text-neutral-50 duration-500 mx-20  md:my-0"
               >
                 Character name
@@ -41,7 +41,7 @@ function Root() {
             </li>
             <li className="my-6">
               <a
-                href={`/Matching`}
+                href={`/matching`}
                 className="hover:text-neutral-50 duration-500 mx-20 my-6 md:my-0"
               >
                 เกมส์จับคู่
@@ -51,7 +51,7 @@ function Root() {
           <ul className="md:flex mr-8 text-2xl font-bold text-rose-700 md:items-center mx-6 my-6 md:my-0">
             <li className="mr-8 my-6">
               <a
-                href={`/Profile`}
+                href={`/profile`}
                 className="hover:text-neutral-50 duration-500 "
               >
                 Profile
