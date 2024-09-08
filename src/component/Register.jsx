@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 
-
-
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%]).{8,24}$/;
 
 const RegisterSchema = Yup.object({
@@ -17,9 +15,7 @@ const RegisterSchema = Yup.object({
     .required("Required"),
   username: Yup.string()
     .min(4, "Mininum 4 characters")
-    .required("Required")
-    .test('username','Username is already taken', async (value) => {
-      return await isUsernameAvailable(value);}),
+    .required("Required"),
   password: Yup.string()
     .required("Required")
     .matches(
@@ -32,16 +28,8 @@ const RegisterSchema = Yup.object({
 });
 
 function Register() {
-  // const [values, setValues] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   username: "",
-  //   password: "",
-  //   confirmpassword: "",
-  // });
 
   const navigate = useNavigate();
-
 
   return (
     <>
@@ -60,11 +48,23 @@ function Register() {
                 password: "",
                 confirmpassword: "",
               }}
-              onSubmit={async(value, action) => {
-                console.log("value::", value, "\naction::", action);
-                const response = await axios
+              onSubmit={async(value, actions) => {
+                const users = await axios.get(
+                  "https://crudcrud.com/api/77dcd5d993724a3eba5ccb4bbfadd374/users"
+                )
+                if (
+                  users.data.filter((user) => user.username === value.username)
+                  .length >= 1
+                ) {
+                  alert(
+                  "This username already taken."
+                  )
+                  actions.resetForm();
+                  return;
+                }
+                axios
                   .post(
-                    "https://crudcrud.com/api/a6080486fa9b4702a546ee0c3130ef24/users",
+                    "https://crudcrud.com/api/77dcd5d993724a3eba5ccb4bbfadd374/users",
                     {
                       firstname: value.firstname,
                       lastname:value.lastname,
@@ -73,10 +73,13 @@ function Register() {
                     }
                   )
                   .then((res) => {
-                    console.log(res);
-                    // navigate('/')
+                    alert("register successfully!")
+                    navigate("/login")
                   })
-                  .catch((error) => (console.log(error)));
+                  .catch((error) => {
+                    alert("Please try again. Something went wrong")
+                    actions("/login");
+                  });
               }}
             >
               {({ isSubmitting, handleChange, values }) => {

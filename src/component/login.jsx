@@ -19,12 +19,14 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const users = await axios .get("https://crudcrud.com/api/a6080486fa9b4702a546ee0c3130ef24/users")
+    const users = await axios .get("https://crudcrud.com/api/77dcd5d993724a3eba5ccb4bbfadd374/users")
     const targetUser = users.data.find(user => user.username === values.username)
     if (!targetUser || targetUser.password !== values.password) {
       alert("Invalid username 0r password");
       return;
     } else {
+      alert(`Welcome $`)
+      localStorage.setItem("user",JSON.stringify(targetUser));
       navigate("/matching")
     }
     }

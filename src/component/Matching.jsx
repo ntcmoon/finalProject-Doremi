@@ -63,9 +63,9 @@ function Matching() {
 
   return (
     <>
-      <div className="w-screen">
-        <div className="container m-auto relative">
-          <h2 className="text-center text-6xl font-bold p-16 text-amber-400">
+      <div className="w-screen ">
+        <div className="container m-auto  md:z-40">
+          <h2 className="text-center text-6xl font-bold p-16 text-amber-400 ">
             Matching Game
           </h2>
           <div className="grid grid-cols-10 items-center gap-4">

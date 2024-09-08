@@ -18,15 +18,15 @@ function Root() {
 
   return (
     <>
-      <nav className="md:flex justify-between bg-yellow-400 items-center drop-shadow-xl ">
+      <nav className="md:flex justify-between bg-yellow-400 items-center drop-shadow-xl md:z-50  w-full z-50">
         <div className="flex justify-between items-center">
           <img src="./logo.png" className="w-40 p-4"></img>
           <div className="md:hidden block mx-6 " neme="menu" onClick={() => setOpen(!isOpen)}>
             <Hamburger toggled={isOpen} toggle={setOpen} />
           </div>
         </div>
-        <div className={`md:flex md:justify-between md:w-2/3 z-[-1] md-z-auto md:static absolute bg-yellow-400 w-full left-0  md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ${
-            isOpen ? 'top-[80px] opacity-100' : 'top-[-400px] opacity-0'}`}>
+        <div className={`md:flex md:justify-between md:w-2/3 z-[-1] md-z-auto md:static  absolute bg-yellow-400 w-full left-0  md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500 ${
+            isOpen ? 'top-[80px] opacity-100 ' : 'top-[-400px] opacity-0'}`}>
           <ul
             className="md:flex md:items-center text-2xl font-bold text-rose-700  "
             id="navbar-hamburger"
@@ -34,7 +34,7 @@ function Root() {
             <li className="my-6">
               <a
                 href={"/Charname"}
-                className="hover:text-neutral-50 duration-500 mx-6  md:my-0"
+                className="hover:text-neutral-50 duration-500 mx-20  md:my-0"
               >
                 Character name
               </a>
@@ -42,7 +42,7 @@ function Root() {
             <li className="my-6">
               <a
                 href={`/Matching`}
-                className="hover:text-neutral-50 duration-500 mx-6 my-6 md:my-0"
+                className="hover:text-neutral-50 duration-500 mx-20 my-6 md:my-0"
               >
                 เกมส์จับคู่
               </a>
