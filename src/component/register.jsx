@@ -50,7 +50,7 @@ function Register() {
               }}
               onSubmit={async(value, actions) => {
                 const users = await axios.get(
-                  "https://crudcrud.com/api/77dcd5d993724a3eba5ccb4bbfadd374/users"
+                  "https://crudcrud.com/api/d6b72c92092040f787978f14c15251b0/users"
                 )
                 if (
                   users.data.filter((user) => user.username === value.username)
@@ -64,7 +64,7 @@ function Register() {
                 }
                 axios
                   .post(
-                    "https://crudcrud.com/api/77dcd5d993724a3eba5ccb4bbfadd374/users",
+                    "https://crudcrud.com/api/d6b72c92092040f787978f14c15251b0/users",
                     {
                       firstname: value.firstname,
                       lastname:value.lastname,

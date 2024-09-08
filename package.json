@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"https://crudcrud.com/api/1a733604522147088533cfb9016f1917",
+  "proxy":"https://crudcrud.com/api/d6b72c92092040f787978f14c15251b0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
